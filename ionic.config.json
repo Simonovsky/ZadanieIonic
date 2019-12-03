@@ -1,7 +1,8 @@
 {
   "name": "ZadanieIonic",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }
