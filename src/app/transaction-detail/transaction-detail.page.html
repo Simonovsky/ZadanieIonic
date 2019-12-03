@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title *ngIf="mTransaction">TRANSACTION DETAIL ID:{{mTransaction.transactionId}} </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content *ngIf="mTransaction">
+      <ion-item>
+        <ion-text>Sender ID: {{mTransaction.senderId}}</ion-text>
+      </ion-item>
+      <ion-item>
+          <ion-text>Reciever ID: {{mTransaction.recieverId}}</ion-text>
+      </ion-item>
+      <ion-item>
+          <ion-text>Amount: {{mTransaction.amount}}€</ion-text>
+      </ion-item>
+      <ion-item>
+          <ion-text>Type: {{mTransaction.type}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-text>Message: {{mTransaction.message}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-text>Date: {{mTranDateIsoString}}</ion-text>
+      </ion-item>
+    </ion-card-content>
+
+    <ion-button size = "default" (click) = "backOnClick()">
+      Back
+    </ion-button>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-item>
+      <ion-icon name ="person"></ion-icon><ion-title>USER</ion-title><ion-button align-items-baseline (click)="editUserBtnOnClick()"><ion-icon name="create" onclick="editInfo"></ion-icon></ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+      <ion-card-header>
+        USER INFO
+      </ion-card-header>
+      <ion-card-content>
+
+        <ion-item>
+          <ion-row>
+             <ion-text>
+              Name and surname: {{mUser.userName}} {{mUser.userSurname}}
+            </ion-text>
+          </ion-row>
+        </ion-item>
+
+        <ion-item>
+            <ion-row>
+               <ion-text>
+                Address:  {{mUser.userAddress}}
+              </ion-text>
+            </ion-row>
+          </ion-item>
+
+          <ion-item>
+              <ion-row>
+                 <ion-text>
+                  Phone:  {{mUser.userPhone}}
+                </ion-text>
+              </ion-row>
+            </ion-item>
+
+              <ion-item>
+                  <ion-row>
+                     <ion-text>
+                      Email:  {{mUser.userEmail}}
+                    </ion-text>
+                  </ion-row>
+              </ion-item>
+
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        BALANCE INFO
+      </ion-card-header>
+
+      <ion-item>
+        <ion-text>
+          Balance: {{mUser.userBalance}}€
+        </ion-text>
+      </ion-item>
+
+    </ion-card>
+    
+</ion-content>

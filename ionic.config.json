@@ -1,0 +1,7 @@
+{
+  "name": "ZadanieIonic",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

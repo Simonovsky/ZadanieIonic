@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      NEW TRANSACTION
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+          <ion-label position="floating">Reciever ID</ion-label>
+          <ion-input type = "number"  [(ngModel)] = "RecieverId" required></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="floating">Amount in €</ion-label>
+          <ion-input type = "number" [(ngModel)] = "Amount" required></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="floating">Type</ion-label>
+          <ion-input type = "string" [(ngModel)] = "Type" required></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="floating">Message for reciever</ion-label>
+          <ion-input type = "string" [(ngModel)] = "Message" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-button size = "default" button-assertive (click) = "sendButtonOnClick()"> SEND </ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

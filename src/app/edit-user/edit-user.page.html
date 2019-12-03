@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-item>
+      <ion-title>EditUser</ion-title> <ion-button align-items-baseline (click) = 'editUserSaveBtnOnClick()' > <ion-icon name = "save"></ion-icon></ion-button>
+  </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      USER INFO
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-item>
+        <ion-row>
+           <ion-input type = "text"  value = '{{mUser.userName}}'  [(ngModel)]="mUser.userName">
+          </ion-input>
+        </ion-row>
+      </ion-item>
+
+      <ion-item>
+        <ion-row>
+           <ion-input type = "text"  value = '{{mUser.userSurname}}'  [(ngModel)]="mUser.userSurname">    
+          </ion-input>
+        </ion-row>
+      </ion-item>
+
+      <ion-item>
+          <ion-row>
+             <ion-input type = "text" value = '{{mUser.userAddress}}'[(ngModel)]="mUser.userAddress">              
+             </ion-input>
+          </ion-row>
+        </ion-item>
+
+        <ion-item>
+            <ion-row>
+               <ion-input type = "text" value = '{{mUser.userPhone}}'[(ngModel)]="mUser.userPhone">               
+              </ion-input>
+            </ion-row>
+          </ion-item>
+
+            <ion-item>
+                <ion-row>
+                   <ion-input type = "email" value = '{{mUser.userEmail}}' [(ngModel)]="mUser.userEmail">        
+                  </ion-input>
+                </ion-row>
+            </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      BALANCE INFO
+    </ion-card-header>
+
+    <ion-item>
+      <ion-text>
+        Balance: {{mUser.userBalance}}€
+      </ion-text>
+    </ion-item>
+
+  </ion-card>
+  
+</ion-content>

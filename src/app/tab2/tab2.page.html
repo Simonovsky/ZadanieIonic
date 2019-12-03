@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-item>
+          <ion-icon name ="apps"></ion-icon><ion-title>TRANSACTIONS</ion-title><ion-button align-items-baseline (click)="refreshOnClick()"><ion-icon name="refresh" onclick="editInfo"></ion-icon></ion-button>
+      </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list >
+      <ion-card *ngFor="let transaction of mTransactions" (click)= "transactionOnClick(transaction)">
+        <ion-item>
+          <ion-text>Transaction id: {{transaction.transactionId}}</ion-text> 
+        </ion-item>
+        <ion-item>
+          <ion-text >Transaction type: {{transaction.type}}</ion-text>
+        </ion-item>
+
+        <ion-item *ngIf="transaction.senderId == mUser.userId">
+          <ion-text>Amount:<ion-text class= "negativeTransaction"> - {{transaction.amount}}</ion-text> </ion-text>
+        </ion-item>
+
+        <ion-item *ngIf="transaction.recieverId == mUser.userId" >
+            <ion-text>Amount: <ion-text class = "positiveTransaction"> + {{transaction.amount}}</ion-text></ion-text>
+          </ion-item>
+      </ion-card>
+  </ion-list>
+</ion-content>
