@@ -16,9 +16,7 @@ export class Tab1Page {
   
 
   constructor(private storage: Storage, private navController: NavController) {
-    storage.get('user').then((val) => {
-      this.mUser = JSON.parse(val); }
-      );
+   
   }
 
   editUserBtnOnClick() {

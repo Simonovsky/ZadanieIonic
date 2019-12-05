@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { UserTransaction } from '../UserTransaction';
+import { Transaction } from '../Transaction';
 import { User } from '../User';
 import { ToastController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
+import { TransactionServiceService } from '../transaction-service.service';
+
 
 
 @Component({
@@ -12,7 +14,8 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-  mTransactions: UserTransaction[] = new Array();
+  mTransactionService = new TransactionServiceService(this.storage);
+  mTransactions: Transaction[] = new Array();
   mUser: User = new User();
 
   RecieverId:number = null;
@@ -31,31 +34,23 @@ export class Tab3Page {
     });
   }
 
-  getNewTransactionId(){
-    let ID = 0;
-    this.mTransactions.forEach(transaction => {
-      if(transaction.transactionId > ID){
-        ID = transaction.transactionId;
-      }
-    });
-    return ID + 1;
-  }
 
   sendButtonOnClick(){
-    let trID = this.getNewTransactionId();
     let sendID = this.mUser.userId;
-    console.log("Send new transaction btn clicked! transaction id: "+ trID);
+    console.log("Send new transaction btn clicked! transaction ");
 
     if(this.RecieverId !== null && this.Amount !== null && this.Type !== null && this.Message !== null){
-      this.mTransactions.push(new UserTransaction().createTransaction(trID, sendID, this.RecieverId, this.Amount, this.Type, this.Message, Date.now()));
-      this.storage.set("transactions", JSON.stringify(this.mTransactions));
 
-      this.mUser.userBalance = this.mUser.userBalance - this.Amount;
-      this.storage.set("user", JSON.stringify(this.mUser));
-
-      this.presentToast("Transaction recieved by the bank.");
-      this.navController.navigateRoot("/tabs/tab1");
-
+      //checks funds
+      if(this.mUser.userBalance >= this.Amount ){
+        this.mTransactionService.createTransaction(sendID, this.RecieverId, this.Amount, this.Type, this.Message, Date.now(), this.mUser).then(()=>{        
+          this.presentToast("Transaction recieved by the bank.");
+          this.navController.navigateRoot("/tabs");
+        });
+      }else{
+        this.presentToast("Insufficient funds!!!");
+      }
+  
     }else{
       
       this.presentToast("All of these fields must be filled in order to create transaction !")

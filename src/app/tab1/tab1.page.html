@@ -6,7 +6,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf= "mUser">
     <ion-card>
       <ion-card-header>
         USER INFO
@@ -15,7 +15,7 @@
 
         <ion-item>
           <ion-row>
-             <ion-text>
+             <ion-text *ngIf= "mUser">
               Name and surname: {{mUser.userName}} {{mUser.userSurname}}
             </ion-text>
           </ion-row>

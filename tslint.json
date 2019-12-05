@@ -58,6 +58,28 @@
     "quotemark": [
       false
     ],
+    "typedef-whitespace": [
+      false,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      },
+      {
+        "call-signature": "onespace",
+        "index-signature": "onespace",
+        "parameter": "onespace",
+        "property-declaration": "onespace",
+        "variable-declaration": "onespace"
+      }
+    ],
+    "align":false,
+    "one-line":false,
+    "comment-format": false,
+    "whitespace": false,
+    "no-trailing-whitespace": false,
     "trailing-comma": false,
     "no-output-on-prefix": true,
     "no-inputs-metadata-property": true,

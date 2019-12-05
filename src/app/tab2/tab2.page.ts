@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { UserTransaction } from '../UserTransaction';
+import { Transaction } from '../Transaction';
 import { User } from '../User';
 import { NavController } from '@ionic/angular';
+import { UserServiceService } from '../user-service.service';
+import { TransactionServiceService } from '../transaction-service.service';
 
 
 @Component({
@@ -12,7 +14,7 @@ import { NavController } from '@ionic/angular';
 })
 export class Tab2Page {
 
-  mTransactions: UserTransaction[] = new Array();
+  mTransactions: Transaction[] = new Array();
   mUser: User = new User();
 
   constructor(private storage: Storage, private navController: NavController) {
@@ -20,20 +22,11 @@ export class Tab2Page {
     this.storage.get('user').then((val) => {
         this.mUser = JSON.parse(val);  
     });
-
-    this.storage.get('transactions').then((val) => {
-      this.mTransactions = JSON.parse(val);
-
-      this.mTransactions.forEach(transaction => {
-        if  (transaction.recieverId !== this.mUser.userId && transaction.senderId !== this.mUser.userId){
-          this.mTransactions.splice(transaction.transactionId, 1);
-        }
-      });
-
-    });
   }
 
-  ionViewDidEnter() {
+  
+  
+  ionViewDidEnter(){
     this.refreshOnClick();
   }
 
@@ -46,18 +39,27 @@ export class Tab2Page {
       this.mTransactions = JSON.parse(val);
 
       this.mTransactions.forEach(transaction => {
-        if  (transaction.recieverId !== this.mUser.userId && transaction.senderId !== this.mUser.userId){
+        console.log(transaction);
+        if(transaction !== null){
+          if  (transaction.recieverId !== this.mUser.userId && transaction.senderId !== this.mUser.userId){
+            this.mTransactions.splice(transaction.transactionId, 1);
+          }
+        }else{
           this.mTransactions.splice(transaction.transactionId, 1);
         }
       });
     });
   }
 
-  transactionOnClick(inTransaction: UserTransaction){
+  transactionOnClick(inTransaction: Transaction){
     console.log(inTransaction);
 
     this.storage.set("selected-transaction", JSON.stringify(inTransaction));
     this.navController.navigateRoot("transaction-detail");
+  }
+
+  statsOnClick(){
+    this.navController.navigateRoot("stats");
   }
 }
 

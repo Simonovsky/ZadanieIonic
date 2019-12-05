@@ -13,7 +13,11 @@ const routes: Routes = [
   {
     path: 'transaction-detail',
     loadChildren: () => import('./transaction-detail/transaction-detail.module').then( m => m.TransactionDetailPageModule)
+  },  {
+    path: 'stats',
+    loadChildren: () => import('./stats/stats.module').then( m => m.StatsPageModule)
   }
+
 ];
 @NgModule({
   imports: [

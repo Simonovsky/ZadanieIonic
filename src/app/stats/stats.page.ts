@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage';
+import { NavController } from '@ionic/angular';
+import { Transaction } from '../Transaction';
 
 @Component({
   selector: 'app-stats',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatsPage implements OnInit {
 
-  constructor() { }
+  constructor(private navController:NavController) { }
 
   ngOnInit() {
   }
 
+
+  backOnClick(){
+    this.navController.back();
+  }
 }

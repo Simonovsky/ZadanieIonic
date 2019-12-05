@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { NavController } from '@ionic/angular';
-import { UserTransaction } from '../UserTransaction';
+import { Transaction } from '../Transaction';
 
 @Component({
   selector: 'app-transaction-detail',
@@ -10,7 +10,7 @@ import { UserTransaction } from '../UserTransaction';
 })
 export class TransactionDetailPage implements OnInit {
 
-  mTransaction: UserTransaction;
+  mTransaction: Transaction;
   mTranDateIsoString:string;
 
   constructor(private storage: Storage, private navController: NavController) {
