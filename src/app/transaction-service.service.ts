@@ -70,7 +70,7 @@ export class TransactionServiceService {
 
 
   public async createTransactionsFromArr(inTransactions:Transaction[], inUser:User): Promise<Transaction[]>{
-
+    this.mTransactions = new Array();
     inTransactions.forEach(tr => {
         
         tr.accountBalanceBeforeTransaction = inUser.userBalance;
@@ -85,7 +85,7 @@ export class TransactionServiceService {
           inUser.userBalance = tr.accountBalanceAfterTransaction;
 
         }
-
+        
         this.mTransactions.push(tr);
         console.log(inUser.userBalance);
       

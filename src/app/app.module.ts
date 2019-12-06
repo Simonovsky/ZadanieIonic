@@ -46,26 +46,48 @@ export class AppModule {
 
 
   createTransactions(){
-    this.mTransactions = new Array();
-    this.mTransactions.push(
-      new Transaction().createTransaction(0, 0, 1, 100, "edu", "school", 1572566400),
-      new Transaction().createTransaction(1, 2, 0, 500, "faktura", "whatever", 1572706800),
-      new Transaction().createTransaction(2, 0, 3, 54, "bar", "jhg", 1572670800),
-      new Transaction().createTransaction(3, 1, 3, 52, "basr", "", 1572670800)
-    );
+    this.mTransactionService.fetchTransactions().then(trans => {
+      this.mTransactions = trans;
+      // only if there are no tr's in db
 
-    console.log("IN",this.mTransactions);
+      if(trans == null){
+        console.log("loaded transactions = null creating new ");
 
-    this.mTransactionService.createTransactionsFromArr(this.mTransactions, this.mUser).then(transactions => {
-      this.mTransactions = transactions;
+        this.mTransactions = new Array(
+          new Transaction().createTransaction(0, 0, 1, 100, "edu", "school", 1572566400),
+          new Transaction().createTransaction(1, 2, 0, 500, "faktura", "whatever", 1572706800),
+          new Transaction().createTransaction(2, 0, 3, 54, "bar", "jhg", 1572670800),
+          new Transaction().createTransaction(3, 1, 3, 52, "basr", "", 1572670800)
+        );
+          
+        console.log("IN",this.mTransactions);
+          
+        this.mTransactionService.createTransactionsFromArr(this.mTransactions, this.mUser).then(transactions => {
+          this.mTransactions = transactions;
+        });
+      }else{
+        console.log("loaded transactions lenght = "+trans.length.toString);
+      }
     });
+
+   
   }
 
   createUser(){
-    this.mUserService.createUser(0,'Simon','Kolejak',15200,'Adresa 3','0915159615','simon.kolejak@sajhdsb.sa').then(user =>{
-      console.log(user);
-      this.mUser = user;
-      this.createTransactions();
-    });
+    this.mUserService.fetchUser().then(usr => {
+      if(usr == null){
+        console.log("No user fetched creating new");
+        this.mUserService.createUser(0,'Simon','Kolejak',15200,'Adresa 3','0915159615','simon.kolejak@sajhdsb.sa').then(user =>{
+         console.log(user);
+         this.mUser = user;
+         this.createTransactions();
+       });
+      }else{
+        this.mUser = usr;
+        console.log("User fetched! User: " ,this.mUser );
+
+      }
+    })
+    
   }
 }

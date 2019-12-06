@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-item>
-      <ion-icon name ="stats"></ion-icon>
+      <ion-icon name ="pie"></ion-icon>
       <ion-title>STATS</ion-title>
       <ion-button align-items-baseline (click)="backOnClick()">
         <ion-icon name="return-left"></ion-icon>
@@ -11,5 +11,7 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <canvas #lineCanvas></canvas>
+  </ion-card>
 </ion-content>

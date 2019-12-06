@@ -15,14 +15,14 @@
 
       <ion-item>
         <ion-row>
-           <ion-input type = "text"  value = '{{mUser.userName}}'  [(ngModel)]="mUser.userName">
+           <ion-input type = "text" pattern="^[a-zA-Z]*$"  value = '{{mUser.userName}}'  [(ngModel)]="mUser.userName">
           </ion-input>
         </ion-row>
       </ion-item>
 
       <ion-item>
         <ion-row>
-           <ion-input type = "text"  value = '{{mUser.userSurname}}'  [(ngModel)]="mUser.userSurname">    
+           <ion-input type = "text" pattern="^[a-zA-Z]*$" value = '{{mUser.userSurname}}'  [(ngModel)]="mUser.userSurname">    
           </ion-input>
         </ion-row>
       </ion-item>

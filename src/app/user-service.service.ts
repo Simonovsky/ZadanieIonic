@@ -23,6 +23,7 @@ export class UserServiceService {
     userAddress: string,
     userPhone: string,
     userEmail: string) :Promise<User> {
+      this.mUser = new User();
       this.mUser.userId = userId;
       this.mUser.userName = userName;
       this.mUser.userSurname = userSurname;
