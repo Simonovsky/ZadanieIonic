@@ -16,6 +16,10 @@ const routes: Routes = [
   },  {
     path: 'stats',
     loadChildren: () => import('./stats/stats.module').then( m => m.StatsPageModule)
+  },
+  {
+    path: 'get-payment-qr',
+    loadChildren: () => import('./get-payment-qr/get-payment-qr.module').then( m => m.GetPaymentQrPageModule)
   }
 
 ];

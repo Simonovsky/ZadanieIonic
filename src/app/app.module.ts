@@ -15,11 +15,13 @@ import { Storage } from '@ionic/storage';
 import { Transaction } from './Transaction';
 import { UserServiceService } from './user-service.service';
 import { TransactionServiceService } from './transaction-service.service';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(),
+  imports: [NgxQRCodeModule, BrowserModule, IonicModule.forRoot(),
     IonicStorageModule.forRoot({
       name: '__mydb',
 driverOrder: [ 'sqlite', 'indexeddb', 'websql']

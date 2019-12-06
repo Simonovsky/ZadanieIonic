@@ -58,6 +58,11 @@ export class Tab3Page {
   }
 
 
+  qrOnClick(){
+    this.navController.navigateRoot("/get-payment-qr");
+
+  }
+
   async presentToast(toastMsg:string) {
     const toast = await this.toastController.create({
       message: toastMsg,

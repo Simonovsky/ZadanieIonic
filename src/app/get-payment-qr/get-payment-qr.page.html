@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-item>
+      <ion-icon name ="qr-scanner"></ion-icon>
+      <ion-title>ASK FOR PAYMENT BY QR</ion-title>
+      <ion-button align-items-baseline (click)="backOnClick()">
+        <ion-icon name="return-left"></ion-icon>
+      </ion-button>  
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ngx-qrcode 
+              [qrc-element-type]="elementType" 
+              [qrc-value] = "mTransactionJson"
+              qrc-class = "aclass"
+              qrc-errorCorrectionLevel = "L">
+        </ngx-qrcode>
+    </ion-card>
+    <ion-card>
+      <ion-card-content>
+        <ion-item>
+            <ion-label position="floating">Amount in €</ion-label>
+            <ion-input type = "number" [(ngModel)] = "mTransaction.amount" required></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Type</ion-label>
+            <ion-input type = "string" [(ngModel)] = "mTransaction.type" required></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Message for reciever</ion-label>
+            <ion-input type = "string" [(ngModel)] = "mTransaction.message"></ion-input>
+        </ion-item>
+        <ion-button (click)= "generateQr()">Generate</ion-button>
+      </ion-card-content>
+    </ion-card>
+   
+</ion-content>
