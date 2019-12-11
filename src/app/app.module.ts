@@ -16,6 +16,8 @@ import { Transaction } from './Transaction';
 import { UserServiceService } from './user-service.service';
 import { TransactionServiceService } from './transaction-service.service';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+
 
 
 @NgModule({
@@ -28,6 +30,7 @@ driverOrder: [ 'sqlite', 'indexeddb', 'websql']
     }),
      AppRoutingModule],
   providers: [
+    BarcodeScanner,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

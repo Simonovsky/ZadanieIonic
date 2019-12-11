@@ -5,6 +5,7 @@ import { User } from '../User';
 import { ToastController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 import { TransactionServiceService } from '../transaction-service.service';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 
 
@@ -18,12 +19,13 @@ export class Tab3Page {
   mTransactions: Transaction[] = new Array();
   mUser: User = new User();
 
-  RecieverId:number = null;
-  Amount:number = null;
-  Type:string = null;
-  Message:string = null;
+  mNewTransaction:Transaction = new Transaction();
+  RecieverId:number = this.mNewTransaction.recieverId;
+  Amount:number = this.mNewTransaction.amount;
+  Type:string = this.mNewTransaction.type;
+  Message:string = this.mNewTransaction.message;
 
-  constructor(private storage: Storage, private toastController: ToastController, private navController: NavController) {
+  constructor(private storage: Storage, private toastController: ToastController, private navController: NavController, private barcodeScanner: BarcodeScanner) {
 
     this.storage.get('user').then((val) => {
       this.mUser = JSON.parse(val);
@@ -60,7 +62,20 @@ export class Tab3Page {
 
   qrOnClick(){
     this.navController.navigateRoot("/get-payment-qr");
+  }
 
+  scan() {
+    this.barcodeScanner.scan().then(data => {
+        // this is called when a barcode is found
+        const mTr:Transaction = JSON.parse(data.text.toString());
+
+        this.RecieverId =mTr.recieverId;
+        this.Amount = mTr.amount;
+        this.Type = mTr.type;
+        this.Message = mTr.message;
+
+        console.log(data.text);
+      });      
   }
 
   async presentToast(toastMsg:string) {
